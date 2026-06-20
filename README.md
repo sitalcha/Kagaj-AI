@@ -24,11 +24,15 @@
 
 ---
 
-## 🛠️ Installation
-Make sure you have Python 3 installed, then run:
+## 🛠️ Installation & Setup
+To run this project from scratch, you need Python 3 installed on your computer.
+
+**One-Click Install:**
+Simply copy the command below and paste it into your CMD or Terminal to install all required libraries at once:
 ```bash
-pip install pandas PyMuPDF pillow google-genai openpyxl
+pip install -r requirements.txt
 ```
+*(Or you can install them manually using: `pip install pandas PyMuPDF pillow google-genai openpyxl`)*
 
 ## 🚀 Usage Guide
 1. **Configure API Key:** Open `auto_extract.py` and replace `YOUR_API_KEY_HERE` with your Gemini API key.
@@ -51,7 +55,11 @@ python auto_extract.py
 - **अटो-सेभ (Auto-Save):** हरेक ५ वटा डाटा निस्केपछि आफैं Excel मा सेभ हुन्छ। बत्ती गएर वा इन्टरनेट गएर डाटा उड्ने डर हुँदैन।
 - **स्मार्ट टाइमर:** गुगलको लिमिट सकियो भने क्र्यास (Crash) नभईकन यो आफैं केही समय पर्खिएर फेरि सुरु हुन्छ।
 
-### ⚙️ कसरी चलाउने?
-१. आफ्नो कम्प्युटरमा माथि दिइएको `pip install...` कमान्ड हानेर टुलहरू इन्स्टल गर्नुहोस।
-२. `auto_extract.py` फाइल खोलेर त्यहाँ `YOUR_API_KEY_HERE` लेखिएको ठाउँमा आफ्नो गुगलको API Key हाल्नुहोस्।
-३. टर्मिनलमा गएर `python auto_extract.py` टाइप गरी इन्टर थिच्नुहोस्।
+### ⚙️ कसरी चलाउने? (Easy Setup)
+१. सुरुमा आफ्नो कम्प्युटरमा Python इन्स्टल भएको हुनुपर्छ।
+२. **सजिलो इन्स्टल (One-Click Install):** तलको कमान्डलाई कपी (Copy) गरेर आफ्नो CMD वा टर्मिनलमा पेस्ट (Paste) गरी इन्टर थिच्नुहोस्। यसले कोडलाई चाहिने सबै कुराहरू एकैपटक आफैं इन्स्टल गर्दिन्छ:
+```bash
+pip install -r requirements.txt
+```
+३. `auto_extract.py` फाइल खोलेर त्यहाँ `YOUR_API_KEY_HERE` लेखिएको ठाउँमा आफ्नो गुगलको API Key हाल्नुहोस्।
+४. टर्मिनलमा गएर `python auto_extract.py` टाइप गरी इन्टर थिच्नुहोस्। कोड चल्न सुरु हुनेछ!

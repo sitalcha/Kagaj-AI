@@ -1,0 +1,5 @@
+pandas
+PyMuPDF
+pillow
+google-genai
+openpyxl
