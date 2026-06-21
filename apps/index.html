@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kagaj-AI — Extract Text from Any Image</title>
+    <meta name="description" content="Free AI tool to extract handwritten Nepali & English text from any image or scanned document. Powered by Google Gemini AI.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated background orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">📋</span>
+            <span class="logo-text">Kagaj<span class="logo-accent">-AI</span></span>
+        </div>
+        <p class="tagline">Extract text from any image — handwritten, printed, Nepali or English</p>
+        <div class="badges">
+            <span class="badge badge-ai"><span class="badge-dot"></span>Powered by Gemini AI</span>
+            <span class="badge badge-free">100% Free</span>
+            <span class="badge badge-secure">🔒 Your data stays in browser</span>
+        </div>
+    </header>
+
+    <!-- API Key Section -->
+    <div class="api-key-bar" id="apiKeyBar">
+        <div class="api-key-inner">
+            <span class="key-icon">🔑</span>
+            <input type="password" class="api-key-input" id="apiKeyInput" placeholder="Paste your Gemini API Key here..." autocomplete="off">
+            <button class="api-key-save" id="apiKeySave">Save Key</button>
+            <a href="https://aistudio.google.com/apikey" target="_blank" class="get-key-link">Get free key →</a>
+        </div>
+        <div class="api-key-status" id="apiKeyStatus"></div>
+    </div>
+
+    <!-- Main App -->
+    <main class="app-container">
+
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="upload-zone" id="dropZone">
+                <div class="upload-visual">
+                    <div class="upload-circle">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <h3 class="upload-title">Drop your image here</h3>
+                    <p class="upload-subtitle">or click to browse — JPG, PNG, BMP, WebP supported</p>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+            </div>
+
+            <!-- File Preview -->
+            <div class="file-preview" id="filePreview">
+                <div class="preview-header">
+                    <div class="preview-info">
+                        <span class="preview-icon">🖼️</span>
+                        <div>
+                            <div class="preview-name" id="previewName"></div>
+                            <div class="preview-size" id="previewSize"></div>
+                        </div>
+                    </div>
+                    <button class="preview-remove" id="removeFile">✕</button>
+                </div>
+                <div class="preview-image-wrap">
+                    <img class="preview-image" id="previewImage" alt="Preview">
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <section class="controls-section" id="controlsSection">
+            <div class="prompt-box">
+                <label class="prompt-label">
+                    <span>✏️ What should AI extract?</span>
+                    <span class="prompt-optional">(optional)</span>
+                </label>
+                <textarea class="prompt-input" id="promptInput" rows="3" placeholder="Leave empty to extract everything, or be specific:&#10;• &quot;Read the handwritten Nepali text&quot;&#10;• &quot;Extract name, address, and phone number&quot;&#10;• &quot;What is written in this document?&quot;"></textarea>
+            </div>
+
+            <button class="extract-btn" id="extractBtn" disabled>
+                <div class="btn-loader" id="btnLoader"></div>
+                <span class="btn-icon" id="btnIcon">🚀</span>
+                <span class="btn-label" id="btnLabel">Extract with AI</span>
+            </button>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2 class="results-title">✅ Extracted Data</h2>
+                <button class="copy-all-btn" id="copyAllBtn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span id="copyAllLabel">Copy All</span>
+                </button>
+            </div>
+
+            <!-- JSON Cards -->
+            <div class="result-cards" id="resultCards"></div>
+
+            <!-- Full Text -->
+            <div class="full-text-box" id="fullTextBox">
+                <div class="full-text-header">
+                    <span class="full-text-label">📝 Full Response</span>
+                    <button class="copy-text-btn" id="copyTextBtn">
+                        <span id="copyTextLabel">Copy</span>
+                    </button>
+                </div>
+                <div class="full-text-content" id="fullTextContent"></div>
+            </div>
+        </section>
+
+        <!-- Error -->
+        <div class="error-banner" id="errorBanner">
+            <span class="error-icon">⚠️</span>
+            <span class="error-msg" id="errorMsg"></span>
+        </div>
+
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span id="toastMsg">Copied!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <span>Built by <a href="https://github.com/sitalcha" target="_blank">sitalcha</a></span>
+            <span class="footer-dot">•</span>
+            <span>Powered by Google Gemini AI</span>
+            <span class="footer-dot">•</span>
+            <span>Made in Nepal 🇳🇵</span>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
