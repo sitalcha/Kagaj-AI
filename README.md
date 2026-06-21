@@ -5,6 +5,7 @@
     <em>Turn thousands of scanned Nepali forms into structured Excel data — automatically.</em>
   </p>
   <p align="center">
+    <a href="https://sitalc.com.np/kagaj.ai/"><img src="https://img.shields.io/badge/🌐_Live_Demo-Click_Here-success?style=for-the-badge" alt="Live Demo"></a>
     <a href="#-key-features"><img src="https://img.shields.io/badge/✨_Features-6-blue?style=for-the-badge" alt="Features"></a>
     <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/Powered_by-Google_Gemini_AI-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Gemini AI"></a>
     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
@@ -87,6 +88,13 @@ Remaining: 1266
 1. **PDF → Image:** The script converts the first page (cover) of each PDF to a high-quality 150 DPI image.
 2. **Image → AI:** The image is sent to Google Gemini AI with a strict prompt, asking it to return a clean JSON object.
 3. **JSON → Excel:** The returned JSON is parsed by `pandas` and appended directly into the Excel file.
+
+---
+
+## 🌐 Live Web App
+
+Try the tool directly in your browser without installing anything! 
+👉 **[Live Demo: Kagaj-AI Extractor](https://sitalc.com.np/kagaj.ai/)**
 
 ---
 
